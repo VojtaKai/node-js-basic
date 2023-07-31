@@ -1,6 +1,7 @@
 import express from "express"
 import { router } from "./routes/login"
 import mongoose from "mongoose"
+import path from "path"
 import dotenv from "dotenv"
 
 dotenv.config()
@@ -14,6 +15,7 @@ mongoose
     .catch(err => console.log("err", err))
 
 app.set("view engine", "ejs")
+app.set("views", path.join(__dirname, "views"))
 
 app.use(router)
 
