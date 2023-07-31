@@ -29,7 +29,10 @@
         ],
         "semi": [
             "error",
-            "never"
+            "never",
+            {
+                "beforeStatementContinuationChars": "always"
+            }
         ],
         "prettier/prettier": "error",
         "no-unused-vars": "off",
