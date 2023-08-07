@@ -3,10 +3,16 @@ import mongoose from "mongoose"
 import path from "path"
 import dotenv from "dotenv"
 import bodyParser from "body-parser"
-
+import passport from "passport"
+import session from "express-session"
 import { router } from "./routes/login"
-
+import { loginCheck } from "./auth/passport"
 dotenv.config()
+
+loginCheck(passport).then(
+    () => console.log("login check loaded"),
+    err => console.log("err", err)
+)
 
 const app = express()
 const PORT = process.env.PORT ?? 3000
@@ -24,6 +30,16 @@ app.set("views", path.join(__dirname, "views"))
 
 app.use(jsonParser)
 app.use(urlencodedParser)
+
+app.use(
+    session({
+        secret: "oneboy",
+        saveUninitialized: true,
+        resave: true
+    })
+)
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(router)
 
 app.listen(PORT, () => {
