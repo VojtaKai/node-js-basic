@@ -37,6 +37,12 @@ export const loginView = (req: Request, res: Response) => {
     res.render("login", {})
 }
 
+export const dashboardView = (req: Request, res: Response) => {
+    res.render("dashboard", {
+        user: req.user
+    })
+}
+
 export const registerView = (req: Request, res: Response) => {
     res.render("register", {})
 }
