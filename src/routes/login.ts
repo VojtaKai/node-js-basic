@@ -6,14 +6,18 @@ import {
     loginUser,
     dashboardView
 } from "../controllers/loginController"
+import {
+    authenticatedToDashboardRestToLogin,
+    authenticatedStraightToDashboard
+} from "../auth/protect"
 
 export const router = express.Router()
 
-router.get("/login", loginView)
+router.get("/login", authenticatedStraightToDashboard, loginView)
 router.post("/login", loginUser)
-router.get("/register", registerView)
+router.get("/register", authenticatedStraightToDashboard, registerView)
 router.post("/register", registerUser)
-router.get("/dashboard", dashboardView)
+router.get("/dashboard", authenticatedToDashboardRestToLogin, dashboardView)
 router.get("/", (req, res, _next) => {
     console.log("Path: '/'\nMethod: 'GET'\n========")
     return res.send("ahoj")

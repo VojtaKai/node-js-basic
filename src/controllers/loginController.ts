@@ -80,6 +80,7 @@ export const registerUser = async (
         try {
             const existingUser = await User.findOne({ email: email })
             if (existingUser) {
+                console.log("User already exists")
                 res.render("register", {
                     name,
                     email,

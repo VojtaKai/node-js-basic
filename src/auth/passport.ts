@@ -22,7 +22,7 @@ const localStrategy = new LocalStrategy.Strategy(
                 return done(null, existingUser)
             }
             console.log("Wrong password")
-                return done(null)
+            return done(null)
         } catch (err) {
             console.log(err)
             return done(null)
@@ -37,7 +37,7 @@ export const loginCheck = async (passport: PassportStatic) => {
     })
     passport.deserializeUser(async (id, done) => {
         try {
-        const user: IUser | null = await User.findById(id)
+            const user: IUser | null = await User.findById(id)
             done(null, user)
         } catch {
             console.log("User not found")
