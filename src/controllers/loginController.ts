@@ -25,10 +25,10 @@ export const loginUser = (
             password
         })
     } else {
-    passport.authenticate("local", {
-        successRedirect: "/dashboard",
-        failureRedirect: "/login",
-        failureFlash: true
+        passport.authenticate("local", {
+            successRedirect: "/dashboard",
+            failureRedirect: "/login",
+            failureFlash: true
         })(req, res)
     }
 }
