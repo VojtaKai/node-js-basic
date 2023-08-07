@@ -2,7 +2,6 @@ import express from "express"
 import mongoose from "mongoose"
 import path from "path"
 import dotenv from "dotenv"
-import bodyParser from "body-parser"
 import passport from "passport"
 import session from "express-session"
 import { router } from "./routes/login"
@@ -17,8 +16,8 @@ loginCheck(passport).then(
 const app = express()
 const PORT = process.env.PORT ?? 3000
 
-const jsonParser = bodyParser.json()
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const jsonParser = express.json()
+const urlencodedParser = express.urlencoded({ extended: false })
 
 mongoose
     .connect(process.env.MONGODB_CLUSTER_URI as string)
